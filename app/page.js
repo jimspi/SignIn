@@ -93,13 +93,27 @@ export default function Home() {
         ) : (
           /* Dashboard for logged-in users */
           <div className="bg-white rounded-lg shadow-md p-8">
-            <h2 className="text-3xl font-bold mb-6">Dashboard</h2>
-            <p className="text-gray-600 mb-4">
-              Welcome to your dashboard! You are successfully logged in as {user.email}.
-            </p>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-800 mb-2">🎉 Authentication Working!</h3>
-              <p className="text-blue-700">
+            <h2 className="text-3xl font-bold mb-6">Welcome to your Dashboard!</h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <h3 className="font-semibold text-blue-800 mb-4">Your Account Information</h3>
+              <div className="space-y-2 text-blue-700">
+                <p><strong>Email:</strong> {user.email}</p>
+                {user.user_metadata?.full_name && (
+                  <p><strong>Name:</strong> {user.user_metadata.full_name}</p>
+                )}
+                {user.user_metadata?.phone_number && (
+                  <p><strong>Phone:</strong> {user.user_metadata.phone_number}</p>
+                )}
+                {user.user_metadata?.company && (
+                  <p><strong>Company:</strong> {user.user_metadata.company}</p>
+                )}
+                <p><strong>Account Created:</strong> {new Date(user.created_at).toLocaleDateString()}</p>
+              </div>
+            </div>
+            
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-800 mb-2">🎉 Authentication Working!</h3>
+              <p className="text-green-700">
                 Your backend connection is successful. You can now build upon this foundation to add more features like user profiles, data storage, and more complex functionality.
               </p>
             </div>
